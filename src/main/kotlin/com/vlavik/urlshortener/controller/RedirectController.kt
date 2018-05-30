@@ -16,7 +16,7 @@ class RedirectController {
 
     @RequestMapping()
     fun redirect(@PathVariable("key") key: String, response: HttpServletResponse) {
-        var result = service.getLink(key)
+        val result = service.getLink(key)
         when (result) {
             is KeyMapperService.Get.Link -> {
                 response.setHeader(HEADER_NAME, result.key)
