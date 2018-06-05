@@ -43,9 +43,8 @@ jacoco {
 
 jacocoTestReport {
 	reports {
-		xml.enabled false
+		xml.enabled true
 		csv.enabled false
-		html.destination new File("${buildDir}/jacocoHtml")
 	}
 }
 
@@ -68,3 +67,5 @@ dependencies {
 	testCompile("com.h2database:h2")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
+check.dependsOn jacocoTestReport
