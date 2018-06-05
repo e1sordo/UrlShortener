@@ -8,18 +8,21 @@ import org.springframework.web.bind.annotation.RequestMapping
 import javax.servlet.http.HttpServletResponse
 
 @Controller
-@RequestMapping("/{key}")
+@RequestMapping
 class RedirectController {
 
     @Autowired
     lateinit var service: KeyMapperService
 
-    @RequestMapping()
+    @RequestMapping("/")
+    fun home() = "home"
+
+    @RequestMapping("/{key}")
     fun redirect(@PathVariable("key") key: String, response: HttpServletResponse) {
         val result = service.getLink(key)
         when (result) {
             is KeyMapperService.Get.Link -> {
-                response.setHeader(HEADER_NAME, result.key)
+                response.setHeader(HEADER_NAME, result.link)
                 response.status = 302
             }
             is KeyMapperService.Get.NotFound -> {

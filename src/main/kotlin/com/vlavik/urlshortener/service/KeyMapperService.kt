@@ -6,7 +6,7 @@ interface KeyMapperService {
     fun add(link: String): String
 
     interface Get {
-        data class Link(val key: String): Get
+        data class Link(val link: String): Get
         data class NotFound(val key: String): Get
     }
 }
